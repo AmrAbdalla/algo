@@ -1,18 +1,8 @@
+from NeuralNetworkConfig import *
+
+# Class representing the whole neural network
 
 
-#Class representing neural network node
-
-
-
-
-#Class representing hidden or output layer
-
-
-
-
-
-
-#Class representing the whole neural network
 class NeuralNetwork():
     NUMBER_OF_HIDDEN_LAYERS = 2
     NUMBER_OF_INPUTS = 20

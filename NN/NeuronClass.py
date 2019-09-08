@@ -1,53 +1,28 @@
 import random
 import math
 
+# Class representing neural network node
+
 
 class Neuron():
 
-    ACTVN_FN_HARDLIM  = 0
-    ACTVN_FN_HARDLIMS = 1
-    ACTVN_FN_PURELIN  = 2
-    ACTVN_FN_POSLIN   = 3
-    ACTVN_FN_SATLIN   = 4
-    ACTVN_FN_SATLINS  = 5
-    ACTVN_FN_LOGSIG   = 6
-    ACTVN_FN_TANSIG   = 7
-
-    def __init__(self, activation_func, numberOfInputs = 1, bias = random.uniform(1,10)):
+    def __init__(self, activation_func, num_inputs, bias = 1):
         self.activation_func = activation_func
-        self.numberOfInputs = numberOfInputs
-        self.weights_list
-        for i in range(numberOfInputs):
+        self.num_inputs = num_inputs
+        self.weights_list = []
+        for i in range(num_inputs):
             self.weights_list.append(random.uniform(1,10))
         self.bias = bias
 
     # List (vector) of input data
     # returns output of node = f(Wp + bias)
-    def ProcessInput(self, input_list = []):
+    def processinput(self, input_list = []):
         sum = self.bias
-        for i in range(self.numberOfInputs):
+        for i in range(self.num_inputs):
             sum = sum + (input_list[i] * self.weights_list[i])
         return self.activation_func(sum)
 
-    def executeActivationFun(self,func_idx):
-        if func_idx ==   Neuron.ACTVN_FN_HARDLIM:
-            hardlim(func_idx)
-        elif func_idx == Neuron.ACTVN_FN_HARDLIMS:
-            hardlims(func_idx)
-        elif func_idx == Neuron.ACTVN_FN_PURELIN:
-            purelin(func_idx)
-        elif func_idx == Neuron.ACTVN_FN_POSLIN:
-            poslin()
-        elif func_idx == Neuron.ACTVN_FN_SATLIN:
-            satlin()
-        elif func_idx == Neuron.ACTVN_FN_SATLINS:
-            satlins()
-        elif func_idx == Neuron.ACTVN_FN_LOGSIG:
-            logsig()
-        elif func_idx == Neuron.ACTVN_FN_TANSIG:
-            tansig
-:
-
+    # ret = 0  val < 0,  ret = 1  val >= 0
     @staticmethod
     def hardlim(self, val):
         ret_val = 1
@@ -55,6 +30,7 @@ class Neuron():
             ret_val = 0
         return ret_val
 
+    # ret = -1  val < 0,  ret = +1  val >= 0
     @staticmethod
     def hardlims(self, val):
         ret_val = 1
@@ -62,10 +38,12 @@ class Neuron():
             ret_val = -1
         return ret_val
 
+    # ret = val
     @staticmethod
     def purelin(self, val):
         return val
 
+    # ret = 0  val < 0,  ret = val   0 <= val
     @staticmethod
     def poslin(self, val):
         if val < 0:
@@ -74,6 +52,7 @@ class Neuron():
             ret_val = val
         return ret_val
 
+    # ret = 0  val < 0,  ret = val   0 <= val <= 1, ret = 1  val > 1
     @staticmethod
     def satlin(self, val):
         if val < 0 :
@@ -84,6 +63,7 @@ class Neuron():
             ret_val = val
         return ret_val
 
+    # ret = -1  val < -1,  ret = val   -1 <= val <= 1, ret = 1  val > 1
     @staticmethod
     def satlins(self, val):
         if val < -1:
@@ -94,10 +74,12 @@ class Neuron():
             ret_val = val
         return ret_val
 
+    # ret = 1/(1 + exp(val))
     @staticmethod
     def logsig(self, val):
         return 1 / (1 + math.exp(-val))
 
+    # ret = (exp(val) - exp(-val))/(exp(val) + exp(-val))
     @staticmethod
     def tansig(self, val):
         return (math.exp(val) - math.exp(-val)) / (math.exp(val) + math.exp(-val))
