@@ -8,5 +8,8 @@ class NeuralNetwork():
     NUMBER_OF_INPUTS = 20
     NUMBER_OF_OUTPUTS = 3
 
-    def __init__(self, layers_list = [0 for i in range(NUMBER_OF_HIDDEN_LAYERS)]):
-        self.layers_list = layers_list
+    def __init__(self):
+        self.layers_list = []
+        self.num_layers = len(network)
+        for i in range(self.num_layers):
+            self.layers_list.append(Layer(network(i),input_map_list(i)))

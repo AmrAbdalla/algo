@@ -6,19 +6,20 @@ import math
 
 class Neuron():
 
-    def __init__(self, activation_func, num_inputs, bias = 1):
+    def __init__(self, activation_func, bias = 1):
         self.activation_func = activation_func
-        self.num_inputs = num_inputs
         self.weights_list = []
-        for i in range(num_inputs):
-            self.weights_list.append(random.uniform(1,10))
         self.bias = bias
 
     # List (vector) of input data
     # returns output of node = f(Wp + bias)
     def processinput(self, input_list = []):
         sum = self.bias
-        for i in range(self.num_inputs):
+        num_inputs = len(input_list)
+        if len(self.weights_list) == 0:
+            for i in range(num_inputs):
+                self.weights_list.append(random.uniform(1, 10))
+        for i in range(num_inputs):
             sum = sum + (input_list[i] * self.weights_list[i])
         return self.activation_func(sum)
 

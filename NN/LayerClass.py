@@ -10,9 +10,9 @@ class Layer():
     MAP_INP_RANGES      = 1
     MAP_INP_ITEM        = 2
 
-    def __init__(self, layer_map_list):
-        self.neurons_list = neurons_list
-        self.layer_map_list = layer_map_list
+    def __init__(self, layer_neurons, input_map):
+        self.layer_neurons = layer_neurons
+        self.input_map = input_map
 
 
     # List (vector) of input data
@@ -38,7 +38,7 @@ class Layer():
 
     @staticmethod
     def selectinputrange(input_list,range):
-        return input_list[range[0]:range[0]]
+        return input_list[range[0]:range[1]]
 
     @staticmethod
     def selectinputranges( input_list, range_list):
