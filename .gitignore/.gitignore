@@ -54,5 +54,5 @@ Mkfile.old
 dkms.conf
 
 
-# Python generated files
-*.pyc
+# Python generated file
+*.pycs
